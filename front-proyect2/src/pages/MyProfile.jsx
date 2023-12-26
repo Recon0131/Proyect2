@@ -27,7 +27,6 @@ function MyProfile() {
       {
       <div className=' bg-greenGray p-8 rounded-xl'>
         <div className=' grid grid-cols-2 gap-5 rounded-xl'>
-          <img src={user.photo.secure_url} width="150" alt={1} height="150" className=' rounded-3xl m-auto'/>
           
           <div>
           <p className='font-bold'>{user.username}</p>

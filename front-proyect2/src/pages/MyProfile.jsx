@@ -15,7 +15,7 @@ function MyProfile() {
   
   useEffect(()=>{
     
-    if(!isAuthenticated){
+    if(!isAuthenticated && !loading){
       navigate("/")
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

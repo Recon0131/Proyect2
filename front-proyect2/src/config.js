@@ -8,3 +8,5 @@ export const CLOUD_KEY = process.env.CLOUD_KEY
 export const CLOUD_API_SECRET = process.env.CLOUD_API_SECRET
  
 export const API_KEY = process.env.API_KEY || "887957321721543"
+
+export const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:4000/api"

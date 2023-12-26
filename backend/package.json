@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cjs": "^0.0.11",
     "cloudinary": "^1.41.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -20,6 +21,7 @@
     "express-fileupload": "^1.4.3",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
+    "loader": "^2.1.1",
     "mongoose": "^8.0.3",
     "morgan": "^1.10.0",
     "socket.io": "^4.7.2",

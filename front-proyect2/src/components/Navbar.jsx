@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
-import Logo from '../image/log.png'
+
 
 export function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
@@ -11,7 +11,7 @@ export function Navbar() {
     <nav className=" bg-greenCard flex justify-between py-5 px-10 rounded-b-lg text-zinc-300 movil:px-2 movil:grid movil:justify-center" >
       <h1 className="text-2xl font-bold movil:py-2 movil:text-center">
         <Link to="/" className=" movil:hidden"> Find your doctor</Link>
-        <img onClick={()=>navigate('/')} src={Logo} width="80" alt="logo" className=" hidden movil:flex movil:mx-auto my-2"/>
+        <img onClick={()=>navigate('/')} src="https://res.cloudinary.com/dpuap0fag/image/upload/v1703617752/log_faxlge.png" width="80" alt="logo" className=" hidden movil:flex movil:mx-auto my-2"/>
       </h1>
       <ul>
         {isAuthenticated ? (

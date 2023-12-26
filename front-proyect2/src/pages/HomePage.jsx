@@ -14,6 +14,7 @@ function HomePage() {
       
       <div className="grid grid-cols-3 gap-5 movil:grid-cols-1">
       {doctors.map((doctor, i) => {
+        console.log(doctor)
         return (
           <CardForm i={i} doctor={doctor}/>
         );

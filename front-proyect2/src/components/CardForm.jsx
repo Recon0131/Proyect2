@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 function CardForm({i,doctor}) {
     const navigate = useNavigate();
 
+    
   return (
     <div key={i} className=" m-auto text-center bg-greenGray p-4 rounded-3xl min-h-fit min-w-fit">
             <img src={doctor.photo.secure_url} alt={i} className=" max-h-40 mx-auto my-4" />

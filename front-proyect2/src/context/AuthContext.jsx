@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated,setIsAuthenticated] = useState(false);
   const [errors,setErrors] = useState([]);
   const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
   
 
   const signup = async (user) => {
@@ -88,22 +89,7 @@ export const AuthProvider = ({ children }) => {
       console.log(error);
     }
   }
-  useEffect(() => {
-    async function get() {
-      try {
-        const res = await getUsers();
-        if (Array.isArray(res)) {
-          return setDoctors(res);
-        }
-        setDoctors([res]);
-        
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    get();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+ 
   useEffect(()=>{
     if (errors.length > 0) {
       const timer = setTimeout(() => {
@@ -114,29 +100,45 @@ export const AuthProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
-  useEffect(()=>{
-    async function checkLogin(){
-      const cookies = Cookies.get();
-
-    if (cookies){
-      try {
-        const res= await verifyTokenRequest(cookies.token)
-        if (!res.data){
-          setIsAuthenticated(false)
+ useEffect(()=>{
+        async function get() {
+          try {
+            const res = await getUsers();
+            if (Array.isArray(res)) {
+              return setDoctors(res);
+            }
+            setDoctors([res]);
+            
+          } catch (error) {
+            console.log(error);
+          }
         }
-        setIsAuthenticated(true)
-        setUser(res.data)
+        get();
 
-      } catch (error) {
-        
+         const checkLogin = async () => {
+      const cookies = Cookies.get();
+      if (!cookies.token) {
         setIsAuthenticated(false);
-        setUser(null);
+        setLoading(false);
+        return;
       }
-    }
-    }
-    checkLogin(); 
 
-  },[])
+      try {
+        const res = await verifyTokenRequest(cookies.token);
+        console.log(res);
+        if (!res.data) return setIsAuthenticated(false);
+        setIsAuthenticated(true);
+        setUser(res.data);
+        setLoading(false);
+      } catch (error) {
+        setIsAuthenticated(false);
+        setLoading(false);
+      }
+    };
+    checkLogin();
+      
+      },[])
+
 
   return (
     <AuthContext.Provider
@@ -145,6 +147,7 @@ export const AuthProvider = ({ children }) => {
         getUsers,
         signin,
         user,
+        loading,
         doctors,
         logout,
         feedback,

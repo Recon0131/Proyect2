@@ -14,12 +14,9 @@ function MyProfile() {
   const navigate= useNavigate();
   
   useEffect(()=>{
-    function refreshPage() {
-      window.location.reload(false);
-    }
+    
     if(!isAuthenticated){
       navigate("/")
-      refreshPage();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isAuthenticated])

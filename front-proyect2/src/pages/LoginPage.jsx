@@ -13,12 +13,10 @@ function LoginPage() {
 console.log(SigninError)
 
   useEffect(()=>{
-    function refreshPage() {
-      window.location.reload(false);
-    }
+    
     if(isAuthenticated){
       navigate("/")
-      refreshPage();
+   
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isAuthenticated])

@@ -13,12 +13,19 @@ function MyProfile() {
   const [view, setView] = useState(null);
   const navigate= useNavigate();
   
-  
+  useEffect(()=>{
+    
+    if(!isAuthenticated){
+      navigate("/")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[isAuthenticated])
+ 
 
   return (
     <div className=' flex m-auto justify-center my-10 text-zinc-300 mx-2'>
       {
-        <div className=' bg-greenGray p-8 rounded-xl'>
+      <div className=' bg-greenGray p-8 rounded-xl'>
         <div className=' grid grid-cols-2 gap-5 rounded-xl'>
           <img src={user.photo.secure_url} width="150" alt={1} height="150" className=' rounded-3xl m-auto'/>
           
@@ -57,7 +64,9 @@ function MyProfile() {
               <ViewCv view={view}/>
               </section>
             </div>
-          ) 
+          ) : (
+            ""
+          )}
           <Link to="/update" className=' bg-blue-700 font-bold flex m-auto my-5 max-w-fit p-3 rounded-2xl hover:bg-blue-900'>Edit Profile</Link>
         </div>
       }

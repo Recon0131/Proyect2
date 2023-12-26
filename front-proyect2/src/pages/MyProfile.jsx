@@ -13,14 +13,7 @@ function MyProfile() {
   const [view, setView] = useState(null);
   const navigate= useNavigate();
   
-  useEffect(()=>{
-    
-    if(!isAuthenticated){
-      navigate("/")
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[isAuthenticated])
- 
+  
 
   return (
     <div className=' flex m-auto justify-center my-10 text-zinc-300 mx-2'>

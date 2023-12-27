@@ -9,13 +9,13 @@ import { FaBriefcase } from "react-icons/fa6";
 import {useNavigate} from 'react-router-dom'
 
 function MyProfile() {
-  const { user,isAuthenticated } = useAuth();  
+  const { user,isAuthenticated,loading } = useAuth();  
   const [view, setView] = useState(null);
   const navigate= useNavigate();
   
   useEffect(()=>{
     
-    if(!isAuthenticated && !loading){
+    if(!isAuthenticated && !loading) {
       navigate("/")
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

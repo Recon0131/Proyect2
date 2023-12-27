@@ -8,99 +8,18 @@ export const useAuth  = ()=>{
     const context = useContext(AuthContext)
     if(!context) {
         throw new Error("useAuth must be called before")
-    }
-    return context
-}
-
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [isAuthenticated,setIsAuthenticated] = useState(false);
-  const [errors,setErrors] = useState([]);
-  const [doctors, setDoctors] = useState([]);
-  const [loading, setLoading] = useState(true);
-  
-
-  const signup = async (user) => {
-    try {
-        const res = await registerRequest(user);
-        
-        setUser(res.data);
-        setIsAuthenticated(true);
-    } catch (error) {
-        console.log(error);
-        setErrors(error.response.data);
-    }
-  };
-
-  const signin = async (user) => {
-    try {
-      const res = await loginRequest(user);
-
-        setUser(res.data);
-        setIsAuthenticated(true);
-
-    } catch (error) {
-      if (Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
       }
-      setErrors([error.response.data.message]);
+      return context
     }
-  }
-  const update = async(user) =>{
-    try {
-      const res = await updateUserRequest(user);
-      setUser(res.data)
-      setIsAuthenticated(true);
-      
-    } catch (error) {
-
-      console.log(error);
-      setErrors(error.response.data);
-    }
-
-  }
-  const feedback = async (feed) => {
-
-    try {
-      
-      const res = await feedBackRequest(feed)
-      console.log(res)
-    } catch (error) {
-      if (Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
-      }
-      setErrors([error.response.data.message]);
-      
-    }
-  }
-  const logout = () => {
-    Cookies.remove("token");
-    setUser(null);
-    setIsAuthenticated(false);
     
-  };
-  const getUsers= async() => {
-    try {
-      const res = await getUsersRequest();
-      console.log(res)
-      return res.data;
-      
-    } catch (error) {
-      console.log(error);
-    }
-  }
- 
-  useEffect(()=>{
-    if (errors.length > 0) {
-      const timer = setTimeout(() => {
-        setErrors([])
-      }, 5000);
-      return ()=>clearTimeout(timer);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    export const AuthProvider = ({ children }) => {
+      const [user, setUser] = useState(null);
+      const [isAuthenticated,setIsAuthenticated] = useState(false);
+      const [errors,setErrors] = useState([]);
+      const [doctors, setDoctors] = useState([]);
+      const [loading, setLoading] = useState(true);
 
- useEffect(()=>{
+      useEffect(()=>{
         async function get() {
           try {
             const res = await getUsers();
@@ -139,6 +58,88 @@ export const AuthProvider = ({ children }) => {
       
       },[])
 
+  
+
+  const signup = async (user) => {
+    try {
+        const res = await registerRequest(user);
+        
+        setUser(res.data);
+        setIsAuthenticated(true);
+    } catch (error) {
+        console.log(error);
+        setErrors(error.response.data);
+    }
+  };
+
+  const signin = async (user) => {
+    try {
+      const res = await loginRequest(user);
+
+        setUser(res.data);
+        setIsAuthenticated(true);
+
+    } catch (error) {
+      if (Array.isArray(error.response.data)) {
+        return setErrors(error.response.data);
+      }
+      setErrors([error.response.data.message]);
+    }
+  }
+  const update = async(user) =>{
+    try {
+      const res = await updateUserRequest(user);
+      setUser(res.data)
+      setIsAuthenticated(true);
+      
+    } catch (error) {
+
+      
+      setErrors(error.response.data);
+    }
+
+  }
+  const feedback = async (feed) => {
+
+    try {
+      
+      const res = await feedBackRequest(feed)
+      
+    } catch (error) {
+      if (Array.isArray(error.response.data)) {
+        return setErrors(error.response.data);
+      }
+      setErrors([error.response.data.message]);
+      
+    }
+  }
+  const logout = () => {
+    Cookies.remove("token");
+    setUser(null);
+    setIsAuthenticated(false);
+    
+  };
+  const getUsers= async() => {
+    try {
+      const res = await getUsersRequest();
+      
+      return res.data;
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(()=>{
+    if (errors.length > 0) {
+      const timer = setTimeout(() => {
+        setErrors([])
+      }, 5000);
+      return ()=>clearTimeout(timer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+
 
   return (
     <AuthContext.Provider
@@ -147,11 +148,11 @@ export const AuthProvider = ({ children }) => {
         getUsers,
         signin,
         user,
-        loading,
         doctors,
         logout,
         feedback,
         update,
+        loading,
         isAuthenticated,
         errors
       }}

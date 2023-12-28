@@ -1,6 +1,5 @@
 
-Since render does not allow me to use cookies. And if you want to see how it works, it's these same ones.
-
+Since render doesn't allow me to use cookies. And if you want to see how it works.
 <h1>Deployment</h1>
 
 `git clone https://github.com/Recon0131/proyect2-fullstack`

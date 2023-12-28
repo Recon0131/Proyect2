@@ -1,9 +1,9 @@
 
-#Deployment
+<h1>Deployment</h1>
 
 `git clone https://github.com/Recon0131/proyect2-fullstack`
 
-##Deployment BackEnd
+<h1>Deployment BackEnd</h1>
 
 `cd backend`
 
@@ -11,9 +11,9 @@
 
 `npm run dev`
 
-###### You need to have a Mongodb database running
+<p>You need to have a Mongodb database running</p>
 
-##Deployment FrontEnd
+<h1>Deployment FrontEnd</h1>
 
 `cd front-proyect2`
 
